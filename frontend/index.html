@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ForgeGuard Pro v3.0 — 17-Category AI Forgery Detection</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <div class="logo"><span>🔍</span><span class="lt">ForgeGuard <span class="pro">Pro</span></span></div>
+  <p class="tag">17-Category AI Document Forgery Detection | NIT Trichy Hackathon 2026</p>
+  <div class="badges">
+    <span class="badge">📊 17 Categories</span><span class="badge">🔬 40+ Checks</span>
+    <span class="badge">🌐 Tamil + English</span><span class="badge">🤖 Gemini AI</span>
+    <span class="badge">⚡ Async Pipeline</span><span class="badge">🔗 Cross-Modal AI</span>
+  </div>
+</header>
+<main>
+  <!-- UPLOAD -->
+  <section id="uploadSection">
+    <div class="upload-box" onclick="document.getElementById('fi').click()">
+      <div style="font-size:52px;margin-bottom:12px">📄</div>
+      <p class="ut">Upload Academic Document to Analyse</p>
+      <p class="us">PDF, JPG, PNG — Marksheets, Certificates, IDs, Degrees</p>
+      <input type="file" id="fi" accept=".pdf,.jpg,.jpeg,.png" hidden/>
+      <button class="btn-up" onclick="event.stopPropagation();document.getElementById('fi').click()">Choose File</button>
+      <p id="fn" class="muted" style="margin-top:10px">No file chosen</p>
+    </div>
+    <button class="btn-an" id="ab" onclick="go()" disabled>🔍 Run 17-Category Analysis</button>
+  </section>
+  <!-- LOADING -->
+  <section id="loadingSection" class="hidden">
+    <div class="spinner"></div>
+    <p class="lt2">Running complete forgery analysis...</p>
+    <div class="steps" id="steps"></div>
+  </section>
+  <!-- RESULTS -->
+  <section id="resultsSection" class="hidden">
+    <!-- VERDICT -->
+    <div class="verdict-card" id="vc">
+      <div id="ve" style="font-size:56px;margin-bottom:10px"></div>
+      <div id="vl" style="font-size:28px;font-weight:700;margin-bottom:6px"></div>
+      <div style="color:#8892a4;margin-bottom:6px">Document Type: <span id="dt" style="color:#fff"></span></div>
+      <div style="color:#8892a4;margin-bottom:14px">Forgery Score: <span id="fs" style="color:#fff;font-size:20px;font-weight:700"></span>/100 &nbsp;|&nbsp; Quality: <span id="qs"></span>/100</div>
+      <div class="sbar"><div class="sfill" id="sf"></div></div>
+      <div class="slabels"><span>0 Genuine</span><span>55 Suspicious</span><span>100 Forged</span></div>
+      <div id="rb" class="rbadge"></div>
+    </div>
+    <!-- INFO ROW -->
+    <div class="two-col">
+      <div class="card">
+        <h3>🗺️ ELA Heatmap</h3>
+        <div id="hc"><p class="muted">No heatmap</p></div>
+        <p class="muted small">Bright = tampered regions</p>
+      </div>
+      <div class="card">
+        <h3>🎯 Top Risk Factors</h3>
+        <div id="tr"></div>
+        <div style="margin-top:12px">
+          <h3 style="margin-bottom:8px">🔍 Doc Intelligence</h3>
+          <div id="di"></div>
+        </div>
+      </div>
+    </div>
+    <!-- SECTIONS -->
+    <div class="card"><h3>📊 17-Category Section Analysis</h3><div id="sa"></div></div>
+    <!-- ALL CHECKS -->
+    <div class="card"><h3>🔬 Complete Check Breakdown (40+ checks)</h3><div id="cl"></div></div>
+    <!-- ANOMALIES -->
+    <div class="card"><h3>⚠️ Anomalies Detected</h3><div id="al"></div></div>
+    <!-- GEMINI -->
+    <div class="card"><h3>🤖 AI Forensics Report (Gemini)</h3><pre id="rt" class="report-pre"></pre></div>
+    <!-- OCR -->
+    <div class="card"><h3>🔤 Extracted Text (OCR)</h3><div id="ot" class="ocr-box"></div></div>
+    <!-- METADATA -->
+    <div class="card" id="mc"><h3>🗂️ Document Metadata</h3><div id="md"></div></div>
+    <div class="action-buttons">
+      <button class="btn-new" onclick="reset()">🔄 Analyse Another</button>
+      <button class="btn-dl"  onclick="dl()">⬇️ Download Report</button>
+    </div>
+  </section>
+</main>
+<footer><p>ForgeGuard Pro v3.0 — ThinkRoot × Vortex Hackathon 2026 | NIT Trichy | 17 Categories | 40+ Checks</p></footer>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#080b12;color:#e0e0e0;min-height:100vh}
+header{background:linear-gradient(135deg,#0c1020,#151c30);padding:24px 40px;border-bottom:1px solid #1a2540;text-align:center}
+.logo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;font-size:30px}
+.lt{font-size:26px;font-weight:700;color:#4f9eff}.pro{color:#a78bfa}
+.tag{color:#8892a4;font-size:12px;margin-bottom:10px}
+.badges{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.badge{background:#0f1520;color:#4f9eff;border:1px solid #2a3a50;padding:3px 10px;border-radius:20px;font-size:11px}
+main{max-width:960px;margin:0 auto;padding:32px 20px}
+/* UPLOAD */
+#uploadSection{display:flex;flex-direction:column;gap:18px;align-items:center}
+.upload-box{width:100%;border:2px dashed #1e2a3a;border-radius:16px;padding:48px 36px;text-align:center;background:#0c1020;cursor:pointer;transition:border-color .3s}
+.upload-box:hover{border-color:#4f9eff}
+.ut{font-size:19px;font-weight:600;margin-bottom:8px}.us{color:#8892a4;font-size:13px;margin-bottom:16px}
+.btn-up{background:#0f1a2a;color:#4f9eff;border:1px solid #4f9eff;padding:9px 20px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .2s}
+.btn-up:hover{background:#4f9eff;color:#fff}
+.btn-an{width:100%;padding:15px;background:linear-gradient(135deg,#4f9eff,#7c3aed);color:#fff;border:none;border-radius:12px;font-size:17px;font-weight:600;cursor:pointer;transition:opacity .2s}
+.btn-an:disabled{opacity:.35;cursor:not-allowed}.btn-an:not(:disabled):hover{opacity:.9}
+/* LOADING */
+#loadingSection{text-align:center;padding:50px 20px}
+.spinner{width:52px;height:52px;border:4px solid #1a2540;border-top:4px solid #4f9eff;border-radius:50%;margin:0 auto 22px;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lt2{font-size:17px;color:#8892a4;margin-bottom:18px}
+.steps{display:flex;flex-direction:column;gap:6px;align-items:center;max-width:520px;margin:0 auto}
+.step{padding:7px 16px;border-radius:20px;font-size:12px;color:#8892a4;background:#0c1020;transition:all .3s;width:100%;text-align:left}
+.step.active{color:#4f9eff;background:#0d1e33;border:1px solid #4f9eff}
+.step.done{color:#4ade80;background:#0a180a}
+/* VERDICT */
+.verdict-card{border-radius:16px;padding:30px;text-align:center;margin-bottom:20px;background:#0c1020;border:1px solid #1e2a3a}
+.sbar{background:#1a2540;border-radius:8px;height:11px;margin:8px 0;overflow:hidden}
+.sfill{height:100%;border-radius:8px;transition:width 1.2s ease;width:0}
+.slabels{display:flex;justify-content:space-between;font-size:11px;color:#8892a4;margin-top:4px}
+.rbadge{display:inline-block;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-top:12px}
+.verdict-GENUINE{border-color:#4ade80}.verdict-GENUINE #vl{color:#4ade80}.verdict-GENUINE .sfill{background:linear-gradient(90deg,#4ade80,#22c55e)}
+.verdict-SUSPICIOUS{border-color:#fbbf24}.verdict-SUSPICIOUS #vl{color:#fbbf24}.verdict-SUSPICIOUS .sfill{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+.verdict-FORGED{border-color:#f87171}.verdict-FORGED #vl{color:#f87171}.verdict-FORGED .sfill{background:linear-gradient(90deg,#f87171,#ef4444)}
+.risk-LOW{background:#0a1e0a;color:#4ade80;border:1px solid #4ade80}
+.risk-MEDIUM{background:#1e1a0a;color:#fbbf24;border:1px solid #fbbf24}
+.risk-HIGH{background:#1e0a0a;color:#f87171;border:1px solid #f87171}
+/* LAYOUT */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.card{background:#0c1020;border:1px solid #1a2540;border-radius:14px;padding:20px;margin-bottom:16px}
+.card h3{font-size:14px;font-weight:600;margin-bottom:14px;color:#c0c8d8}
+#hc img{width:100%;border-radius:8px}
+/* RISK ITEM */
+.ri{display:flex;justify-content:space-between;padding:7px 10px;border-radius:7px;margin-bottom:5px;background:#0f1620;border-left:3px solid}
+.ri.H{border-color:#f87171}.ri.M{border-color:#fbbf24}.ri.L{border-color:#4ade80}
+/* SECTION */
+.sg{margin-bottom:10px;border:1px solid #1a2540;border-radius:10px;overflow:hidden}
+.sh{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:#111826;cursor:pointer}
+.sn{font-size:13px;font-weight:600}.sa2{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+.HIGH{background:#1e0a0a;color:#f87171}.MEDIUM{background:#1e1a0a;color:#fbbf24}.LOW{background:#0a1e0a;color:#4ade80}
+.sb2{padding:10px 14px;display:none}.sb2.open{display:block}
+/* CHECKS */
+.ci{margin-bottom:9px}
+.cr{display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px}
+.cn{color:#c0c8d8}.cs{font-weight:700}
+.cb{background:#1a2540;border-radius:4px;height:5px;overflow:hidden}
+.cf{height:100%;border-radius:4px;transition:width .8s ease}
+.l-L .cf{background:#4ade80}.l-M .cf{background:#fbbf24}.l-H .cf{background:#f87171}
+.l-L .cs{color:#4ade80}.l-M .cs{color:#fbbf24}.l-H .cs{color:#f87171}
+/* ANOMALY */
+.an{background:#150a0a;border:1px solid #3a1010;border-radius:7px;padding:8px 12px;font-size:12px;color:#fca5a5;margin-bottom:6px}
+/* REPORT / OCR */
+.report-pre{font-size:13px;line-height:1.75;color:#c0c8d8;white-space:pre-wrap;background:#06080f;border-radius:8px;padding:14px;max-height:400px;overflow-y:auto;font-family:inherit}
+.ocr-box{font-size:12px;color:#8892a4;background:#06080f;border-radius:8px;padding:12px;max-height:150px;overflow-y:auto;white-space:pre-wrap;font-family:monospace}
+/* META */
+.mrow{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid #1a2540;font-size:12px}
+.mk{color:#8892a4;min-width:130px}.mv{color:#c0c8d8}
+/* ACTIONS */
+.action-buttons{display:flex;gap:12px;margin-top:4px}
+.btn-new{flex:1;padding:13px;background:#0c1020;color:#4f9eff;border:1px solid #4f9eff;border-radius:10px;cursor:pointer;font-size:14px;transition:all .2s}
+.btn-new:hover{background:#4f9eff;color:#fff}
+.btn-dl{flex:1;padding:13px;background:linear-gradient(135deg,#4f9eff,#7c3aed);color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:14px;transition:opacity .2s}
+.btn-dl:hover{opacity:.9}
+footer{text-align:center;padding:20px;color:#8892a4;font-size:12px;border-top:1px solid #1a2540;margin-top:32px}
+.hidden{display:none!important}
+.muted{color:#8892a4;font-size:12px;text-align:center;padding:14px}
+.small{font-size:11px;margin-top:5px}
