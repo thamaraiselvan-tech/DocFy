@@ -1,12 +1,13 @@
 fastapi
 uvicorn[standard]
+python-multipart
 pymupdf
 pdfplumber
 opencv-python
 pillow
+python-bidi==0.4.2
 easyocr
 google-generativeai
-python-multipart
 numpy
 python-dateutil
 fuzzywuzzy
