@@ -83,31 +83,122 @@ def run_cross_modal(text:str, image_path:str=None, qr_data:str="", font_count:in
 # ═══════════════════════════════════════
 
 # Dynamic weights — adjusted per file type
+# IMAGE total = 1.00 exactly
 WEIGHTS_IMAGE = {
-    "ela":0.08,"copy_move":0.05,"splicing":0.04,"noise":0.03,"blur_sharpness":0.03,
-    "edge_boundary":0.02,"color_profile":0.03,"compression":0.02,"lighting":0.02,"region_anomaly":0.03,
-    "char_anomaly":0.04,"text_completeness":0.02,"language_consistency":0.02,
-    "date_logic":0.04,"numerical_ranges":0.04,"cross_field":0.04,"id_format":0.02,
-    "name_consistency":0.03,"inst_consistency":0.02,"id_consistency":0.02,"entity_frequency":0.01,
-    "sig_presence":0.03,"sig_blank":0.03,"sig_anomaly":0.02,"stamp_duplication":0.02,"stamp_position":0.02,
-    "qr_check":0.03,"language_anomaly":0.02,"ocr_quality":0.02,"region_duplication":0.02,"logo_duplication":0.01,
-    "cross_text_image":0.02,"cross_text_sig":0.01,"cross_text_qr":0.01,"cross_text_layout":0.01,
-    "table_grid":0.02,"stamp_alignment":0.02,"template_sim":0.01,
+    # Image forensics (Cat 5) — 33%
+    "ela":            0.12,
+    "copy_move":      0.05,
+    "splicing":       0.04,
+    "noise":          0.03,
+    "blur_sharpness": 0.03,
+    "edge_boundary":  0.02,
+    "color_profile":  0.03,
+    "compression":    0.02,
+    "lighting":       0.02,
+    # Text & language (Cat 2,11) — 12%
+    "char_anomaly":        0.04,
+    "text_completeness":   0.02,
+    "language_consistency":0.02,
+    "language_anomaly":    0.02,
+    "ocr_quality":         0.02,
+    # Semantic (Cat 3) — 14%
+    "date_logic":       0.04,
+    "numerical_ranges": 0.04,
+    "cross_field":      0.04,
+    "id_format":        0.02,
+    # Entity (Cat 4) — 8%
+    "name_consistency":  0.03,
+    "inst_consistency":  0.02,
+    "id_consistency":    0.02,
+    "entity_frequency":  0.01,
+    # Signature & stamp (Cat 9) — 13%
+    "sig_presence":     0.03,
+    "sig_blank":        0.03,
+    "sig_anomaly":      0.03,
+    "stamp_duplication":0.02,
+    "stamp_position":   0.02,
+    # QR (Cat 10) — 3%
+    "qr_check":         0.03,
+    # Duplication (Cat 12) — 4%
+    "region_duplication":0.02,
+    "logo_duplication":  0.01,
+    "region_anomaly":    0.01,
+    # Cross-modal (Cat 13) — 6%
+    "cross_text_image":  0.02,
+    "cross_text_sig":    0.01,
+    "cross_text_qr":     0.01,
+    "cross_text_layout": 0.01,
+    # Layout (Cat 6) — 5%
+    "table_grid":        0.02,
+    "stamp_alignment":   0.02,
+    "template_sim":      0.01,
+    # total = 1.00
 }
+
+# PDF total = 1.00 exactly
 WEIGHTS_PDF = {
-    "ela":0.05,"copy_move":0.03,"splicing":0.02,"noise":0.02,"blur_sharpness":0.02,
-    "edge_boundary":0.01,"color_profile":0.02,"compression":0.01,"lighting":0.01,"region_anomaly":0.02,
-    "font_style":0.04,"text_layer_mismatch":0.05,"char_anomaly":0.02,"text_completeness":0.02,
-    "language_consistency":0.02,"ocr_confidence":0.01,
-    "date_logic":0.03,"numerical_ranges":0.03,"cross_field":0.03,"id_format":0.02,"institution_validity":0.02,
-    "name_consistency":0.02,"inst_consistency":0.02,"id_consistency":0.02,
-    "text_layer":0.02,"hidden_text":0.06,"object_count":0.01,"layer_depth":0.02,
-    "font_embed":0.05,"incremental_save":0.03,"suspicious_sw":0.03,"text_img_overlay":0.02,
-    "date_mismatch":0.07,"metadata_software":0.07,"missing_metadata":0.05,"timezone_mismatch":0.02,"author_check":0.01,
-    "digital_signature":0.03,"sig_presence":0.02,"sig_anomaly":0.04,"stamp_duplication":0.01,
-    "qr_check":0.05,"language_anomaly":0.01,"region_duplication":0.01,
-    "cross_text_image":0.02,"cross_text_sig":0.01,"cross_text_qr":0.02,"cross_text_layout":0.01,
-    "margin_consistency":0.02,"header_footer":0.01,"block_spacing":0.01,"stamp_alignment":0.01,
+    # Image forensics on embedded (Cat 5) — 14%
+    "ela":            0.05,
+    "copy_move":      0.03,
+    "splicing":       0.02,
+    "noise":          0.01,
+    "blur_sharpness": 0.01,
+    "edge_boundary":  0.01,
+    "color_profile":  0.01,
+    # Text (Cat 2) — 14%
+    "font_style":          0.04,
+    "text_layer_mismatch": 0.05,
+    "char_anomaly":        0.02,
+    "text_completeness":   0.02,
+    "language_consistency":0.01,
+    # Semantic (Cat 3) — 11%
+    "date_logic":         0.03,
+    "numerical_ranges":   0.03,
+    "cross_field":        0.03,
+    "id_format":          0.01,
+    "institution_validity":0.01,
+    # Entity (Cat 4) — 6%
+    "name_consistency": 0.02,
+    "inst_consistency": 0.02,
+    "id_consistency":   0.02,
+    # PDF forensics (Cat 7) — 13%
+    "text_layer":       0.02,
+    "hidden_text":      0.03,
+    "object_count":     0.01,
+    "layer_depth":      0.02,
+    "font_embed":       0.02,
+    "incremental_save": 0.02,
+    "suspicious_sw":    0.01,
+    # Metadata (Cat 8) — 12%
+    "date_mismatch":     0.04,
+    "metadata_software": 0.03,
+    "missing_metadata":  0.02,
+    "timezone_mismatch": 0.02,
+    "author_check":      0.01,
+    # Signature (Cat 9) — 8%
+    "digital_signature": 0.03,
+    "sig_presence":      0.02,
+    "sig_anomaly":       0.02,
+    "stamp_duplication": 0.01,
+    # QR (Cat 10) — 4%
+    "qr_check":          0.04,
+    # Language (Cat 11) — 2%
+    "language_anomaly":  0.01,
+    "ocr_quality":       0.01,
+    # Duplication (Cat 12) — 2%
+    "region_duplication":0.01,
+    "text_img_overlay":  0.01,
+    # Cross-modal (Cat 13) — 6%
+    "cross_text_image":  0.02,
+    "cross_text_sig":    0.01,
+    "cross_text_qr":     0.02,
+    "cross_text_layout": 0.01,
+    # Layout (Cat 6) — 8%
+    "margin_consistency":0.02,
+    "header_footer":     0.02,
+    "block_spacing":     0.02,
+    "stamp_alignment":   0.02,
+    # total = 1.00
 }
 
 def _transform_score(v):
@@ -116,34 +207,92 @@ def _transform_score(v):
     elif v <= 20:
         return v * 0.8   # reduce weak noise
     return v
-def compute_score(scores:dict, file_type:str, quality_score:float=100) -> float:
-    W = WEIGHTS_IMAGE if file_type=="image" else WEIGHTS_PDF
 
-    # 🔥 Critical override (ADD THIS BLOCK)
-    CRITICAL_CHECKS = ["hidden_text", "date_mismatch", "qr_check", "sig_anomaly"]
-    for k in CRITICAL_CHECKS:
-        if scores.get(k, 0) >= 80:
-            return 85.0
+# Critical anomaly keywords — if any found, minimum score is applied
+CRITICAL_ANOMALY_KEYWORDS = [
+    "impossible",       # impossible percentage, impossible age
+    "exceeds",          # CGPA exceeds, marks exceed
+    "after issue date", # DOB after issue date
+    "future date",      # future date detected
+    "negative",         # negative age/value
+    "mismatch",         # critical mismatch
+    "edited with",      # photoshop/gimp detected
+    "hidden text",      # hidden text found
+    "modified",         # modified after creation
+    "forged",           # explicit forgery flag
+]
 
-    total=0.0; used=0.0
+def _anomaly_penalty(anomalies: list) -> float:
+    """
+    Convert anomaly strings into a score penalty.
+    Each critical anomaly adds to the penalty.
+    Returns 0-100 penalty score.
+    """
+    if not anomalies:
+        return 0.0
+    penalty = 0.0
+    for anomaly in anomalies:
+        al = anomaly.lower()
+        for keyword in CRITICAL_ANOMALY_KEYWORDS:
+            if keyword in al:
+                penalty += 15.0  # each critical anomaly = +15 points
+                break
+        else:
+            penalty += 5.0  # non-critical anomaly = +5 points
+    return min(60.0, penalty)  # cap penalty contribution at 60
 
-    for k,w in W.items():
-        v=scores.get(k)
-        if v is not None and isinstance(v,(int,float)):
-            v = _transform_score(v)   # 🔥 APPLY TRANSFORM
-            total+=float(v)*w
-            used+=w
 
-    raw = (total/used) if used>0 else 0
+def compute_score(scores: dict, file_type: str,
+                  quality_score: float = 100,
+                  anomalies: list = None) -> float:
+    """
+    Weighted forgery score computation.
+    - Numeric check scores: weighted average
+    - Anomaly penalty: direct addition
+    - Quality adjustment: scales confidence
+    - Critical overrides: instant high score
+    """
+    W = WEIGHTS_IMAGE if file_type == "image" else WEIGHTS_PDF
 
-    # 🔥 Improved quality adjustment (modify this part only)
-    quality_factor = quality_score/100
-    if quality_factor < 0.5:
-        adjusted = raw*(0.5+0.5*quality_factor)
+    # ── Critical instant overrides ──────────────────────────
+    # If any single check is extremely high, document is forged
+    INSTANT_FORGED_CHECKS = {
+        "hidden_text":      85,
+        "date_mismatch":    80,
+        "metadata_software":80,
+        "incremental_save": 90,
+        "suspicious_sw":    85,
+    }
+    for k, threshold in INSTANT_FORGED_CHECKS.items():
+        if scores.get(k, 0) >= threshold:
+            return round(min(100, 70 + scores[k] * 0.2), 2)
+
+    # ── Weighted numeric score ───────────────────────────────
+    total = 0.0; used = 0.0
+    for k, w in W.items():
+        v = scores.get(k)
+        if v is not None and isinstance(v, (int, float)):
+            v = _transform_score(float(v))
+            total += v * w
+            used  += w
+
+    raw = (total / used) if used > 0 else 0.0
+
+    # ── Anomaly penalty (THIS IS THE KEY FIX) ───────────────
+    # Anomalies found by semantic/entity checks must affect score
+    penalty = _anomaly_penalty(anomalies or [])
+
+    # Combine: weighted score + anomaly penalty
+    combined = raw * 0.65 + penalty * 0.35
+
+    # ── Quality adjustment ───────────────────────────────────
+    qf = quality_score / 100
+    if qf < 0.5:
+        adjusted = combined * (0.5 + 0.5 * qf)
     else:
-        adjusted = raw*(0.7+0.3*quality_factor)
+        adjusted = combined * (0.7 + 0.3 * qf)
 
-    return round(min(100,max(0,adjusted)),2)
+    return round(min(100, max(0, adjusted)), 2)
 
 def get_verdict(score:float) -> dict:
     if score<=20:   return {"verdict":"GENUINE",    "emoji":"✅","color":"green", "risk":"LOW"}

@@ -107,7 +107,7 @@ def run_full_pipeline(file_path:str) -> dict:
         all_anomalies+=meta_anom
         all_scores.update(meta_f)
     else:
-        meta_raw={}
+        meta_raw={}  # images have no PDF metadata
 
     # ── CAT 9: SIGNATURE & STAMP ─────────────────────
     print("[9/17] Signature & stamp...")
@@ -150,7 +150,7 @@ def run_full_pipeline(file_path:str) -> dict:
 
     # ── CAT 14: SCORING ──────────────────────────────
     print("[14/17] Computing score...")
-    final_score=compute_score(all_scores, file_type, quality_score)
+    final_score=compute_score(all_scores, file_type, quality_score, anomalies=all_anomalies)
     verdict_info=get_verdict(final_score)
 
     # ── CAT 15: EXPLAINABILITY ───────────────────────

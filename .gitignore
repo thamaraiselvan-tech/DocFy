@@ -9,9 +9,8 @@ __pycache__/
 dist/
 build/
 
-# Environment
+# SECRETS — never commit
 .env
-*.env
 
 # Project temp files
 uploads/

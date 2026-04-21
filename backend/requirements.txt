@@ -5,16 +5,9 @@ pdfplumber
 opencv-python
 pillow
 easyocr
-langchain
-langchain-community
-faiss-cpu
-sentence-transformers
 google-generativeai
 python-multipart
 numpy
-scipy
 python-dateutil
-langdetect
-scikit-image
 fuzzywuzzy
 python-Levenshtein

@@ -78,7 +78,7 @@ def check_date_logic(text: str) -> dict:
             if age < 3:
                 anomalies.append(f"Person only {age:.0f} years old at issue date ⚠️")
         except: pass
-    score = min(100, len(anomalies)*35)
+    score = min(100, len(anomalies) * 50)  # each date anomaly = 50 pts (very serious)
     return {"score":score,"anomalies":anomalies,
             "detail":" | ".join(anomalies) if anomalies else "✅ Dates logically consistent"}
 
@@ -106,22 +106,35 @@ def check_age_vs_doctype(text: str) -> dict:
 # ─── 3. Marks/CGPA Range Validation ─────────────────────
 def check_numerical_ranges(text: str) -> dict:
     anomalies = []
+    critical = []
     # Percentage > 100
     for m in re.finditer(r'(\d+(?:\.\d+)?)\s*%', text):
         v = float(m.group(1))
-        if v > 100: anomalies.append(f"Impossible percentage: {v}% ⚠️")
+        if v > 100:
+            anomalies.append(f"Impossible percentage: {v}% ⚠️")
+            critical.append(v)
     # CGPA
     for m in re.finditer(r'(?:cgpa|gpa)[:\s]+(\d+(?:\.\d+)?)', text, re.IGNORECASE):
         v = float(m.group(1))
-        if v > 10: anomalies.append(f"CGPA {v} exceeds 10 ⚠️")
-        if v < 0:  anomalies.append(f"Negative CGPA ⚠️")
+        if v > 10:
+            anomalies.append(f"CGPA {v} exceeds 10 ⚠️")
+            critical.append(v)
+        if v < 0:
+            anomalies.append(f"Negative CGPA ⚠️")
+            critical.append(v)
     # Marks exceed total
     for m in re.finditer(r'(\d+)\s*/\s*(\d+)', text):
         got, tot = int(m.group(1)), int(m.group(2))
-        if got > tot: anomalies.append(f"Marks exceed total: {got}/{tot} ⚠️")
-    score = min(100, len(anomalies)*40)
-    return {"score":score,"anomalies":anomalies,
-            "detail":" | ".join(anomalies) if anomalies else "✅ Numerical values in range"}
+        if got > tot:
+            anomalies.append(f"Marks exceed total: {got}/{tot} ⚠️")
+            critical.append(got)
+    # Score: each critical anomaly = 30 points, max 100
+    score = min(100, len(anomalies) * 30)
+    # If 3+ anomalies, instantly suspicious/forged
+    if len(anomalies) >= 3:
+        score = max(score, 80)
+    return {"score": score, "anomalies": anomalies,
+            "detail": " | ".join(anomalies) if anomalies else "✅ Numerical values in range"}
 
 # ─── 4. ID Format Validation ─────────────────────────────
 def check_id_formats(text: str) -> dict:
