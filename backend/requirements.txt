@@ -6,7 +6,7 @@ pdfplumber
 opencv-python
 pillow
 python-bidi==0.4.2
-easyocr
+easyocr==1.6.2
 google-generativeai
 numpy
 python-dateutil
