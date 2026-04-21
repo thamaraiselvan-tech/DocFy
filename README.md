@@ -1,4 +1,4 @@
-# 🔍 ForgeGuard Pro v3.0
+# 🔍 DocFy
 ### AI-Powered Document Forgery Detection System
 **ThinkRoot × Vortex Hackathon 2026 | NIT Trichy**
 
@@ -6,10 +6,10 @@
 
 ## 🏆 What It Does
 
-ForgeGuard Pro detects forged academic documents (marksheets, certificates, IDs, degrees) using **17 analysis categories** and **40+ individual checks**.
+DocFy detects forged academic documents (marksheets, certificates, IDs, degrees) using **17 analysis categories** and **40+ individual checks**.
 
 - ✅ Supports PDF and Image (JPG/PNG)
-- ✅ Tamil + English OCR
+- ✅ Multi-language OCR
 - ✅ ELA heatmap visualization
 - ✅ Gemini AI forensics report
 - ✅ Cross-modal consistency validation
@@ -68,35 +68,6 @@ uvicorn main:app --reload
 
 ---
 
-## 🌐 Deployment
-
-### Backend → Render.com
-1. Push repo to GitHub
-2. Create Web Service on render.com
-3. Set Root Directory: `backend`
-4. Build: `pip install -r requirements.txt`
-5. Start: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-6. Add env variable: `GEMINI_API_KEY`
-
-### Frontend → Netlify
-1. Connect GitHub repo on netlify.com
-2. Set publish directory: `frontend`
-3. Deploy
-
-### After deploy — update frontend/app.js line 4:
-```javascript
-const API = "https://your-app-name.onrender.com";
-```
-
----
-
-## 🔑 Getting Gemini API Key (Free)
-1. Go to **aistudio.google.com**
-2. Sign in with Google
-3. Click **Get API Key** → **Create API Key**
-4. Copy key → paste in `.env` file
-
----
 
 ## 📁 Project Structure
 
@@ -147,13 +118,3 @@ forgeguard_pro/
 | Deployment | Render + Netlify |
 
 ---
-
-## ⚠️ Notes
-
-- Render free tier sleeps after 15 mins — first request takes ~30s to wake
-- EasyOCR downloads language models on first run (~200MB)
-- Gemini API free tier: 15 requests/min
-
----
-
-*ForgeGuard Pro v3.0 | Built for ThinkRoot × Vortex 2026*
