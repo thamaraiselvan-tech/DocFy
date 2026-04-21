@@ -1,4 +1,4 @@
-# ForgeGuard Pro v3.0
+# DocFy
 ## Complete Project Documentation
 ### ThinkRoot × Vortex Hackathon 2026 | NIT Trichy
 
@@ -21,7 +21,7 @@
 
 ## 1. Project Overview
 
-ForgeGuard Pro is an AI-powered document forgery detection system that analyses academic and government documents using 17 distinct analysis categories and 40+ individual checks. It supports both image (JPG/PNG) and PDF inputs, performs multi-language OCR (English + Tamil), and generates human-readable explainability reports using Google Gemini AI.
+ForgeGuard Pro(DocFy) is an AI-powered document forgery detection system that analyses academic and government documents using 17 distinct analysis categories and 40+ individual checks. It supports both image (JPG/PNG) and PDF inputs, performs multi-language OCR (English + Tamil), and generates human-readable explainability reports using Google Gemini AI.
 
 **Key Differentiators:**
 - 17 analysis categories vs typical 2-3 in existing tools
@@ -655,6 +655,3 @@ Final score is quality-adjusted:
 - Mobile app with camera-based document capture
 
 ---
-
-*ForgeGuard Pro v3.0 | Built for ThinkRoot × Vortex Hackathon 2026 | NIT Trichy*
-*All 17 categories implemented | 40+ checks | Tamil + English | Gemini AI powered*
