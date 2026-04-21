@@ -1,6 +1,6 @@
 ╔══════════════════════════════════════════════════════════╗
-║         FORGEGUARD PRO v3.0 — QUICK SETUP GUIDE          ║
-║         ThinkRoot × Vortex 2026 | NIT Trichy              ║
+║         DocFy — QUICK SETUP GUIDE                        ║
+║         ThinkRoot × Vortex 2026 | NIT Trichy             ║
 ╚══════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -50,9 +50,7 @@ After deploy, update frontend/app.js line 4:
 SUBMISSION CHECKLIST
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 □ GitHub repository link
-□ Live demo URL (Render)
 □ Demo video recording
 □ ThinkRoot.dev documentation
 
-DEADLINE: Sunday 9:00 PM (19th April 2026)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
