@@ -1,6 +1,5 @@
 # 🔍 DocFy
 ### AI-Powered Document Forgery Detection System
-**ThinkRoot × Vortex Hackathon 2026 | NIT Trichy**
 
 ---
 
