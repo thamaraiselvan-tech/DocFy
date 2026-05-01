@@ -117,3 +117,7 @@ forgeguard_pro/
 | Deployment | Render + Netlify |
 
 ---
+
+## Team
+
+Developed as part of an academic/project initiative by the team TechSpark.
